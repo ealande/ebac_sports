@@ -5,6 +5,8 @@ import * as S from './styles'
 
 import { adicionar } from '../../store/reducers/carrinho'
 import { favoritar } from '../../store/reducers/favorito'
+import { useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 
 type Props = {
   produto: ProdutoType
@@ -16,8 +18,9 @@ export const paraReal = (valor: number) =>
     valor
   )
 
-const ProdutoComponent = ({ produto, estaNosFavoritos }: Props) => {
+const ProdutoComponent = ({ produto }: Props) => {
   const dispatch = useDispatch()
+  const estaNosFavoritos = useSelector((state: RootReducer) => state.favorito)
 
   return (
     <S.Produto>
